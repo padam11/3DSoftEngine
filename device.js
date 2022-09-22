@@ -65,7 +65,7 @@ var engine;
                 } //above, draw a yellow point
         };
 
-        Device.prototype.drawLine = function (point0, point1) {
+        device.prototype.drawLine = function (point0, point1) {
             var dist = point1.subtract(point0).length();
         
             // If the distance between the 2 points is less than 2 pixels
@@ -84,7 +84,7 @@ var engine;
             this.drawLine(middlePoint, point1);
         };
 
-        Device.prototype.drawBline = function (point0, point1) { //bresehan algorithm
+        device.prototype.drawBline = function (point0, point1) { //bresehan algorithm
             var x0 = point0.x >> 0;
             var y0 = point0.y >> 0;
             var x1 = point1.x >> 0;
@@ -109,11 +109,11 @@ var engine;
             var projectionMatrix = BABYLON.Matrix.PerspectiveFovLH(0.78, 
                                            this.workingWidth / this.workingHeight, 0.01, 1.0);
 
-            //for (var i = 0; i < cMesh.Vertices.length -1; i++){
-                //var point0 = this.project(cMesh.Vertices[i], transformMatrix);
-                //var point1 = this.project(cMesh.Vertices[i + 1], transformMatrix);
-                //this.drawLine(point0, point1);
-            //}
+            for (var i = 0; i < cMesh.Vertices.length -1; i++){
+                var point0 = this.project(cMesh.Vertices[i], transformMatrix);
+                var point1 = this.project(cMesh.Vertices[i + 1], transformMatrix);
+                this.drawLine(point0, point1);
+            }
 
             for (var index = 0; index < meshes.length; index++) {
                 // current mesh to work on
